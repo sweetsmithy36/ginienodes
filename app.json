@@ -1,0 +1,18 @@
+{
+    "scripts": {
+        "dokku": {
+            "predeploy": "python manage.py rates"
+        }
+    },
+    "formation": {
+        "web": {
+            "quantity":1
+        },
+        "worker": {
+            "quantity": 2
+        },
+        "beat": {
+            "quantity": 2
+        }
+    }
+}
