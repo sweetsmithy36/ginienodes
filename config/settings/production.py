@@ -68,7 +68,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 
@@ -115,7 +115,14 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 # https://anymail.readthedocs.io/en/stable/esps
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ANYMAIL = {}
+EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default='programingtext@gmail.com')# sendgrid
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="Papertrail123.")
+EMAIL_PORT = 465 
+# EMAIL_PORT = 567 
 
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 
 # LOGGING
 # ------------------------------------------------------------------------------
