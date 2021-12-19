@@ -133,7 +133,6 @@ DJANGO_APPS = [
     "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.contrib.admindocs",
-    'django.contrib.gis',
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
@@ -386,9 +385,9 @@ APPEND_SLASH = True
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = "portal/"
-ADMIN_DOC_URL = "portal/doc/"
-ADMIN_FILEBROWSER_URL = "portal/filebrowser/"
+ADMIN_URL="portal/"
+ADMIN_DOC_URL="portal/doc/"
+ADMIN_FILEBROWSER_URL="portal/filebrowser/"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [("""Ahman Desi""", "noreply@ginienode.com")]
