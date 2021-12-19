@@ -1,7 +1,7 @@
 {
     "scripts": {
         "dokku": {
-            "predeploy": "python manage.py rates"
+            "postdeploy": "python manage.py rates"
         }
     },
     "formation": {
