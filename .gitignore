@@ -42,7 +42,7 @@ temp/
 
 # Package files
 *.jar
-# staticfiles/
+staticfiles/
 
 # Maven
 target/
@@ -200,9 +200,9 @@ media/
 .envs/*
 !.envs/.local/
 
+!libs/*
 
-
-!staticfiles/libs/jquery-ui-dist/images/*
+# !staticfiles/libs/jquery-ui-dist/images/*
 # !static/libs/jquery-ui-dist/images/ui-icons_555555_256x240.png
 # !static/libs/jquery-ui-dist/images/ui-icons_555555_256x240.png
 # !static/libs/jquery-ui-dist/images/ui-icons_555555_256x240.png
