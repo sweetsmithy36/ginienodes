@@ -131,7 +131,6 @@ prompt-toolkit==3.0.24
 psycopg2-binary==2.9.2
 ptyprocess==0.7.0
 py==1.11.0
-Py-Trading==0.4.9.5
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycodestyle==2.8.0
