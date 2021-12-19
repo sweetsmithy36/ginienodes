@@ -42,7 +42,7 @@ temp/
 
 # Package files
 *.jar
-staticfiles/
+# staticfiles/
 
 # Maven
 target/
