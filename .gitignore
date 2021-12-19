@@ -202,4 +202,4 @@ media/
 
 
 
-!libs/jquery-ui-dist/images/*.png
+!static/libs/jquery-ui-dist/images/*.png
