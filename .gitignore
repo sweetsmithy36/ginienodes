@@ -199,3 +199,7 @@ media/
 .env
 .envs/*
 !.envs/.local/
+
+
+
+!libs/jquery-ui-dist/images/*.png
