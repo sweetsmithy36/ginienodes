@@ -4,6 +4,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+### Pipfile Ignore
+Pipfile
+
 # C extensions
 *.so
 
