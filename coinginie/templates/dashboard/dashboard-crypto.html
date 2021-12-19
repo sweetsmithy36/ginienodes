@@ -1,0 +1,842 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block contents %}
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="float-end dropdown ms-2">
+                    <a class="text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="mdi mdi-dots-horizontal font-size-18"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="{% url 'users:profile' %}">Increase Limit</a>
+                        <a class="dropdown-item" href="{% url 'users:close_account' request.user.username %}">Close Account</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-4 me-3">
+                        <i class="mdi mdi-account-circle text-primary h1"></i>
+                    </div>
+
+                    <div>
+                        <h5>{{user.name|title}}</h5>
+                        <p class="text-muted mb-1">{{user.email}}</p>
+                        <p class="text-muted mb-0">Id no: #{{user.investor.investor_id}}</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body border-top">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            <p class="fw-medium mb-2">Balance :</p>
+                            <h4>$ {{user.wallet.total_balance|floatformat:2}}</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mt-4 mt-sm-0">
+                            <p class="fw-medium mb-2">Operational Coins :</p>
+                            <div class="d-inline-flex align-items-center mt-1">
+
+                                <a href="javascript: void(0);" class="m-1">
+                                    <div class="avatar-xs">
+                                        <span
+                                            class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                            <i class="mdi mdi-bitcoin"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="javascript: void(0);" class="m-1">
+                                    <div class="avatar-xs">
+                                        <span
+                                            class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
+                                            <i class="mdi mdi-ethereum"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="javascript: void(0);" class="m-1">
+                                    <div class="avatar-xs">
+                                        <span
+                                            class="avatar-title rounded-circle bg-info bg-soft text-info font-size-18">
+                                            <i class="mdi mdi-litecoin"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="card-footer bg-transparent border-top">
+                <div class="text-center">
+                    <a href="javascript: void(0);" class="btn btn-outline-light me-2 w-md">Withdraw</a>
+                    <a href="javascript: void(0);" class="btn btn-primary me-2 w-md">Deposit / Invest</a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="col-xl-8">
+        <div class="card">
+            <div>
+                <div class="row">
+                    <div class="col-lg-9 col-sm-8">
+                        <div class="p-4">
+                            <h5 class="text-primary">Welcome Back !</h5>
+                            <p><strong>Complete your registration!</strong></p>
+
+                            <div class="text-muted">
+                                <p class="mb-1"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
+                                    Update Profile</p>
+                                <p class="mb-1"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
+                                    Update Bank Details</p>
+                                <p class="mb-0"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>
+                                    Complete Verification (KYC) </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 align-self-center">
+                        <div>
+                            <img src="{% static 'images/crypto/features-img/img-1.png' %}" alt=""
+                                class="img-fluid d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:BTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:ETHUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:LTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end row -->
+
+<div class="row">
+
+    <div class="col-xl-4">
+        <div class="card" style="min-height: 320px;">
+            <div class="card-body" style="min-height: 320px;">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="min-height: 330px;">
+                    <div class="tradingview-widget-container__widget" style="min-height: 330px;"></div>
+                    <script type="text/javascript"
+                        src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                            {
+                                "colorTheme": "light",
+                                    "dateRange": "12M",
+                                        "showChart": true,
+                                            "locale": "en",
+                                                "width": "100%",
+                                                    "height": 320,
+                                                        "largeChartUrl": "",
+                                                            "isTransparent": true,
+                                                                "showSymbolLogo": true,
+                                                                    "showFloatingTooltip": true,
+                                                                        "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                                                                            "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                                                                                "gridLineColor": "rgba(240, 243, 250, 0)",
+                                                                                    "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                                                                        "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                                                                            "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                                                                                                "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                                                                                    "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                                                                                        "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+                                                                                                            "tabs": [
+                                                                                                                {
+                                                                                                                    "title": "Indices",
+                                                                                                                    "symbols": [
+                                                                                                                        {
+                                                                                                                            "s": "FOREXCOM:SPXUSD",
+                                                                                                                            "d": "S&P 500"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FOREXCOM:NSXUSD",
+                                                                                                                            "d": "US 100"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FOREXCOM:DJI",
+                                                                                                                            "d": "Dow 30"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "INDEX:NKY",
+                                                                                                                            "d": "Nikkei 225"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "INDEX:DEU40",
+                                                                                                                            "d": "DAX Index"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FOREXCOM:UKXGBP",
+                                                                                                                            "d": "UK 100"
+                                                                                                                        }
+                                                                                                                    ],
+                                                                                                                    "originalTitle": "Indices"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "title": "Futures",
+                                                                                                                    "symbols": [
+                                                                                                                        {
+                                                                                                                            "s": "CME_MINI:ES1!",
+                                                                                                                            "d": "S&P 500"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "CME:6E1!",
+                                                                                                                            "d": "Euro"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "COMEX:GC1!",
+                                                                                                                            "d": "Gold"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "NYMEX:CL1!",
+                                                                                                                            "d": "Crude Oil"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "NYMEX:NG1!",
+                                                                                                                            "d": "Natural Gas"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "CBOT:ZC1!",
+                                                                                                                            "d": "Corn"
+                                                                                                                        }
+                                                                                                                    ],
+                                                                                                                    "originalTitle": "Futures"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "title": "Bonds",
+                                                                                                                    "symbols": [
+                                                                                                                        {
+                                                                                                                            "s": "CME:GE1!",
+                                                                                                                            "d": "Eurodollar"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "CBOT:ZB1!",
+                                                                                                                            "d": "T-Bond"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "CBOT:UB1!",
+                                                                                                                            "d": "Ultra T-Bond"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "EUREX:FGBL1!",
+                                                                                                                            "d": "Euro Bund"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "EUREX:FBTP1!",
+                                                                                                                            "d": "Euro BTP"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "EUREX:FGBM1!",
+                                                                                                                            "d": "Euro BOBL"
+                                                                                                                        }
+                                                                                                                    ],
+                                                                                                                    "originalTitle": "Bonds"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "title": "Forex",
+                                                                                                                    "symbols": [
+                                                                                                                        {
+                                                                                                                            "s": "FX:EURUSD"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FX:GBPUSD"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FX:USDJPY"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FX:USDCHF"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FX:AUDUSD"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            "s": "FX:USDCAD"
+                                                                                                                        }
+                                                                                                                    ],
+                                                                                                                    "originalTitle": "Forex"
+                                                                                                                }
+                                                                                                            ]
+                            }
+                        </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <!-- <div class="float-end">
+                    <select class="form-select form-select-sm ms-2">
+                        <option value="MA" selected>March</option>
+                        <option value="FE">February</option>
+                        <option value="JA">January</option>
+                        <option value="DE">December</option>
+                    </select>
+                </div> -->
+                <h4 class="card-title mb-3">Wallet Balance</h4>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mt-4">
+                            <p>Available Balance</p>
+                            <h4>$ {{user.wallet.total_balance|floatformat:2}}</h4>
+
+                            <p class="text-muted mb-4"> + {{user.wallet.recent_balance_added|floatformat:2}} ( 0.2 % ) <i
+                                    class="mdi mdi-arrow-up ms-1 text-success"></i></p>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <p class="mb-2">Total Investment</p>
+                                        <h5>$ {{user.wallet.total_investment|floatformat:2}}</h5>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-6">
+                                    <div>
+                                        <p class="mb-2">Expense</p>
+                                        <h5>$ 924.38</h5>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <div class="mt-4">
+                                <a href="javascript: void(0);" class="btn btn-primary btn-sm">View more <i
+                                        class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div>
+                            <div id="wallet-balance-chart" class="apex-charts"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 align-self-center">
+                        <div>
+                            <p class="mb-2"><i class="mdi mdi-circle align-middle font-size-10 me-2 text-primary"></i>
+                                Ethereum</p>
+                            <h5>{{user.wallet.eth|floatformat:7}} ETH = <span class="text-muted font-size-14">$ {{user.wallet.ethereum_balance|floatformat:2}}</span></h5>
+                        </div>
+
+                        <div class="mt-4 pt-2">
+                            <p class="mb-2"><i class="mdi mdi-circle align-middle font-size-10 me-2 text-warning"></i>
+                                Bitcoin</p>
+                            <h5>{{user.wallet.btc|floatformat:7}} BTC = <span class="text-muted font-size-14">$ {{user.wallet.bitcoin_balance|floatformat:2}}</span></h5>
+                        </div>
+
+                        <div class="mt-4 pt-2">
+                            <p class="mb-2"><i class="mdi mdi-circle align-middle font-size-10 me-2 text-info"></i>
+                                Litecoin</p>
+                            <h5>{{user.wallet.ltc|floatformat:7}} LTC = <span class="text-muted font-size-14">$ {{user.wallet.litecoin_balance|floatformat:2}}</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Transactions</h4>
+
+                <ul class="nav nav-pills bg-light rounded" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#transactions-all-tab" role="tab">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#transactions-buy-tab" role="tab">Investments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#transactions-sell-tab" role="tab">Withdrawals</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-4">
+                    <div class="tab-pane active" id="transactions-all-tab" role="tabpanel">
+                        <div class="table-responsive" data-simplebar style="max-height: 330px;">
+                            <table class="table align-middle table-nowrap">
+                                <tbody>
+                                    {% for tran in transactions %}
+                                    <tr>
+                                        <td style="width: 50px;">
+                                            {% if tran.type == "Invest" %}
+                                            <div class="font-size-22 text-primary">
+                                                <i class="bx bx-down-arrow-circle"></i>
+                                            </div>
+                                            {% elif tran.type == "Withdraw" %}
+                                            <div class="font-size-22 text-danger">
+                                                <i class="bx bx-up-arrow-circle"></i>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+
+                                        <td>
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">{% if tran.type == "Invest" %}Invest{% else %}Withdraw{% endif %} {{tran.currency}}</h5>
+                                                <p class="text-muted mb-0">{{tran.created|date:"d M, Y"}}</p>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 mb-0">{% if tran.currency == "LITECOIN" %}{{tran.ltc|floatformat:7}} LTC{% elif tran.currency == "ETHEREUM" %}{{tran.eth|floatformat:7}}  ETH{% elif tran.currency == "BITCOIN" %}{{tran.btc|floatformat:7}} BTC{% endif %}</h5>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">${{tran.amount}}</h5>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">{% if tran.verified %} <span class="text-success">Verified</span> {% else %} <span class="text-danger">Unverified</span> {% endif %}</h5>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">No Transactions</h5>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="transactions-buy-tab" role="tabpanel">
+                        <div class="table-responsive" data-simplebar style="max-height: 330px;">
+                            <table class="table align-middle table-nowrap">
+                                <tbody>
+                                    {% for tran in deposits %}
+                                    <tr>
+                                        <td>
+                                            <div class="font-size-22 text-primary">
+                                                <i class="bx bx-down-arrow-circle"></i>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">Invest {% if tran.currency == "LITECOIN" %}LTC{% elif tran.currency == "ETHEREUM" %}ETH{% elif tran.currency == "BITCOIN" %}BTC{% endif %}</h5>
+                                                <p class="text-muted mb-0">{{tran.created|date:"d M, Y"}}</p>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 mb-0">{% if tran.currency == "LITECOIN" %}{{tran.ltc|floatformat:7}} LTC{% elif tran.currency == "ETHEREUM" %}{{tran.eth|floatformat:7}} ETH{% elif tran.currency == "BITCOIN" %}{{tran.btc|floatformat:7}} BTC{% endif %}</h5>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">${{tran.amount}}</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">{% if tran.verified %} <span class="text-success">Verified</span> {% else %} <span class="text-danger">Unverified</span> {% endif %}</h5>
+                                            </div>
+                                        </td>    
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">No Investment</h5>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="transactions-sell-tab" role="tabpanel">
+                        <div class="table-responsive" data-simplebar style="max-height: 330px;">
+                            <table class="table align-middle table-nowrap">
+                                <tbody>
+                                    {% for tran in withdrawals %}
+                                    <tr>
+                                        <td>
+                                            <div class="font-size-22 text-danger">
+                                                <i class="bx bx-up-arrow-circle"></i>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">Withdraw {% if tran.currency == "LITECOIN" %}LTC{% elif tran.currency == "ETHEREUM" %}ETH{% elif tran.currency == "BITCOIN" %}BTC{% endif %}</h5>
+                                                <p class="text-muted mb-0">{{tran.created|date:"d M, Y"}}</p>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 mb-0">{% if tran.currency == "LITECOIN" %}{{tran.ltc|floatformat:7}} LTC{% elif tran.currency == "ETHEREUM" %}{{tran.eth|floatformat:7}} ETH{% elif tran.currency == "BITCOIN" %}{{tran.btc|floatformat:7}} BTC{% endif %}</h5>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">${{tran.amount}}</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-end">
+                                                <h5 class="font-size-14 text-muted mb-0">{% if tran.verified %} <span class="text-success">Verified</span> {% else %} <span class="text-danger">Unverified</span> {% endif %}</h5>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">
+                                            <div>
+                                                <h5 class="font-size-14 mb-1">No Withdrawal</h5>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Notifications</h4>
+
+                <ul class="list-group" data-simplebar style="max-height: 390px;">
+                    <li class="list-group-item border-0">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-xs">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="{% static 'images/companies/img-1.png' %}" alt="" height="18">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="font-size-14">Donec vitae sapien ut</h5>
+                                <p class="text-muted">If several languages coalesce, the grammar of the resulting
+                                    language</p>
+
+                                <div class="float-end">
+                                    <p class="text-muted mb-0"><i class="mdi mdi-account me-1"></i> Joseph</p>
+                                </div>
+                                <p class="text-muted mb-0">12 Mar, 2020</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item border-0">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-xs">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="{% static 'images/companies/img-2.png' %}" alt="" height="18">
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="flex-grow-1">
+                                <h5 class="font-size-14">Cras ultricies mi eu turpis</h5>
+                                <p class="text-muted">To an English person, it will seem like simplified English, as a
+                                    skeptical cambridge</p>
+
+                                <div class="float-end">
+                                    <p class="text-muted mb-0"><i class="mdi mdi-account me-1"></i> Jerry</p>
+                                </div>
+                                <p class="text-muted mb-0">13 Mar, 2020</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item border-0">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-xs">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="{% static 'images/companies/img-3.png' %}" alt="" height="18">
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="flex-grow-1">
+                                <h5 class="font-size-14">Duis arcu tortor suscipit</h5>
+                                <p class="text-muted">It va esser tam simplic quam occidental in fact, it va esser
+                                    occidental.</p>
+
+                                <div class="float-end">
+                                    <p class="text-muted mb-0"><i class="mdi mdi-account me-1"></i> Calvin</p>
+                                </div>
+                                <p class="text-muted mb-0">14 Mar, 2020</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item border-0">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar-xs">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="{% static 'images/companies/img-1.png' %}" alt="" height="18">
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="flex-grow-1">
+                                <h5 class="font-size-14">Donec vitae sapien ut</h5>
+                                <p class="text-muted">If several languages coalesce, the grammar of the resulting
+                                    language</p>
+
+                                <div class="float-end">
+                                    <p class="text-muted mb-0"><i class="mdi mdi-account me-1"></i> Joseph</p>
+                                </div>
+                                <p class="text-muted mb-0">12 Mar, 2020</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Invest / Withdraw</h4>
+
+                {% if user.subscription.subcontract.active %}
+                <p>Your current running contract has to end before you can invest again or withdraw</p>
+                {% endif %}
+
+                <ul class="nav nav-pills bg-light rounded" role="tablist">
+                    {% if user.subscription.subcontract.active == False %}
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#buy-tab" role="tab">Invest</a>
+                    </li>
+                    {% endif %}
+                    {% if user.can_withdraw %}
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#sell-tab" role="tab">Withdraw</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <div class="tab-content mt-4" style="min-height: 340px;">
+                    {% if user.subscription.subcontract.active == False %}
+                    <div class="tab-pane active" id="buy-tab" role="tabpanel">
+                        <div class="float-end ms-2">
+                            <h5 class="font-size-14"><i
+                                    class="bx bx-wallet text-primary font-size-16 align-middle me-1"></i> ${{user.wallet.total_balance|floatformat:2}}</h5>
+                        </div>
+                        <h5 class="font-size-14 mb-4">Invest Coin</h5>
+                        <label>Copy Address :</label>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Bitcoin</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Ethereum</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Litecoin</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+
+                        <form action="{% url 'wallet:invest' %}" method="post">
+                            {% csrf_token %}
+
+                            <!-- <div class="form-group mb-3">
+                                <label>Payment method :</label>
+                                <select class="form-select">
+                                    <option>Credit / Debit Card</option>
+                                    <option>Paypal</option>
+                                </select>
+                            </div> -->
+
+                            <div>
+                                <label>Add Amount :</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text">Amount</label>
+                                    <select class="form-select" style="max-width: 90px;" name="currency">
+                                        <option value="BITCOIN" selected>BTC</option>
+                                        <option value="ETHEREUM">ETH</option>
+                                        <option value="LITECOIN">LTC</option>
+                                    </select>
+                                    <input type="number" class="form-control" name="amount">
+                                    <label class="input-group-text">$</label>
+                                </div>
+
+                                <!-- <div class="input-group mb-3">
+                                    <label class="input-group-text">Price</label>
+                                    <input type="text" class="form-control" placeholder="Price">
+                                    <label class="input-group-text">$</label>
+                                </div> -->
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-block w-md">Invest Coin</button>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <div class="tab-pane" id="sell-tab" role="tabpanel">
+                        <div class="float-end ms-2">
+                            <h5 class="font-size-14"><i
+                                    class="bx bx-wallet text-primary font-size-16 align-middle me-1"></i> ${{user.wallet.total_balance|floatformat:2}}</h5>
+                        </div>
+                        <h5 class="font-size-14 mb-4">Withdraw Coin</h5>
+
+                        <div>
+
+                            <div class="form-group mb-3">
+                                <label>Email :</label>
+                                <input type="email" class="form-control" disabled placeholder="Email" value="{{user.email}}">
+                            </div>
+
+                            <form action="{% url 'wallet:withdraw' %}" method="post">
+                                {% csrf_token %}
+                                <label>Add Amount :</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text">Amount</label>
+
+                                    <select class="form-select" style="max-width: 90px;" name="currency">
+                                        <option value="BITCOIN" selected>BTC</option>
+                                        <option value="ETHEREUM">ETH</option>
+                                        <option value="LITECOIN">LTC</option>
+                                    </select>
+                                    <input type="text" class="form-control" name="amount">
+                                    <label class="input-group-text">$</label>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label>Wallet Address :</label>
+                                    <input type="text" class="form-control" placeholder="Wallet Address" name="address">
+                                </div>
+
+                                <!-- <div class="input-group mb-3">
+
+                                    <label class="input-group-text">Price</label>
+
+                                    <input type="text" class="form-control" placeholder="Price">
+
+                                    <label class="input-group-text">$</label>
+                                </div>
+ -->
+                                <!-- <div class="input-group mb-3">
+                                    <label class="input-group-text">Total</label>
+                                    <input type="text" class="form-control" placeholder="Total">
+                                </div> -->
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-danger btn-block w-md text-black">Withdraw Coin</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+{% endblock %}
+
+{% block extra_javascript %}
+<!-- apexcharts -->
+<script src="{% static 'libs/apexcharts/dist/apexcharts.min.js'%}"></script>
+
+<!-- crypto dash init js -->
+<script src="{% static 'js/pages/crypto-dashboard.init.js'%}"></script>
+{% endblock %}

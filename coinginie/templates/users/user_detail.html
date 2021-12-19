@@ -1,0 +1,382 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block contents %}
+<div class="row">
+  <div class="col-xl-4">
+      <div class="card overflow-hidden">
+          <div class="bg-primary bg-soft">
+              <div class="row">
+                  <div class="col-7">
+                      <div class="text-primary p-3">
+                          <h5 class="text-primary">Welcome Back !</h5>
+                      </div>
+                  </div>
+                  <div class="col-5 align-self-end">
+                      <img src="{% static 'images/profile-img.png'%}" alt="" class="img-fluid">
+                  </div>
+              </div>
+          </div>
+          <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="text-muted fw-medium mb-2">Total Revenue</p>
+                        <h4 class="mb-0">${{object.wallet.total_balance}}</h4>
+                    </div>
+  
+                    <div class="flex-shrink-0 align-self-center">
+                        <div class="avatar-sm mini-stat-icon rounded-circle bg-primary">
+                            <span class="avatar-title">
+                                <i class="bx bx-package font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+          <div class="card-body pt-0">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <div class="avatar-md profile-user-wid mb-4">
+                          <img src="{% if user.investor.image_thumbnail %}{{user.investor.image_thumbnail.url}}{% else %}{% static 'images/users/avatar-1.jpg' %}{% endif %}" alt="" class="img-thumbnail rounded-circle">
+                      </div>
+                      <h5 class="font-size-15 text-truncate">{{object.first_name}} {{object.last_name}}</h5>
+                      <p class="text-muted mb-0 text-truncate">Investor</p>
+                  </div>
+
+                  <div class="col-sm-8">
+                      <div class="pt-4">
+                         
+                          <div class="row">
+                              <div class="col-6">
+                                  <h5 class="font-size-15">{{object.subscription.contract.name}}</h5>
+                                  <p class="text-muted mb-0">Subscribed Contract</p>
+                              </div>
+                              <div class="col-6">
+                                  <h5 class="font-size-15">${{object.wallet.total_balance|floatformat:2}}</h5>
+                                  <p class="text-muted mb-0">Balance</p>
+                              </div>
+                          </div>
+                          {% if object.is_verified == False %}
+                          <div class="mt-4">
+                              <a href="{% url 'users:profile' %}" class="btn btn-primary waves-effect waves-light btn-sm">KYC Verification<i class="mdi mdi-arrow-right ms-1"></i></a>
+                          </div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- end card -->
+
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title mb-4">Personal Information</h4>
+
+              <!-- <p class="text-muted mb-4">Hi I'm Cynthia Price,has been the industry's standard dummy text To an English person, it will seem like simplified English, as a skeptical Cambridge.</p> -->
+              <div class="table-responsive">
+                  <table class="table table-nowrap mb-0">
+                      <tbody>
+                          <tr>
+                              <th scope="row">Full Name :</th>
+                              <td>{{object.name|title}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Mobile :</th>
+                              <td>{{object.investor.phone}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Email :</th>
+                              <td>{{object.email}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Location :</th>
+                              <td>{{object.investor.country}}</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- end card -->
+
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title mb-5">Bank Detail</h4>
+              <div class="table-responsive">
+                <table class="table table-nowrap mb-0">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Bank Name :</th>
+                            <td>{{object.account.bank_name|title}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Account Number :</th>
+                          <td>{{object.account.account_number}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Swift Code :</th>
+                          <td>{{object.account.swift_code}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Routing Number :</th>
+                          <td>{{object.account.routing_no}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+          </div>
+      </div>  
+      <!-- end card -->
+  </div>         
+  
+  <div class="col-xl-8">
+
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card mini-stats-wid">
+                  <div class="card-body">
+                      <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:BTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:ETHUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:LTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title mb-4">Transaction Activities</h4>
+              <div class="table-responsive">
+                  <table class="table table-nowrap table-hover mb-0">
+                      <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Investment/Withdrawals</th>
+                              <th scope="col">Currency</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Amount</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for tran in transactions %}
+                          <tr>
+                              <th scope="row">{{forloop.counter}}</th>
+                              <td>{% if tran.type == "Invest" %}<strong class="text-success">Invest</strong>{% else %}<strong class="text-danger">Withdraw</strong>{% endif %}</td>
+                              <td>{% if tran.currency == "LITECOIN" %}LTC{% elif tran.currency == "ETHEREUM" %}ETH{% elif tran.currency == "BITCOIN" %}BTC{% endif %}</td>
+                              <td>{{tran.created|date:"d M, Y"}}</td>
+                              <td>${{tran.amount}}</td>
+                          </tr>
+                          {% empty %}
+                          <tr>
+                              <th scope="row">1</th>
+                              <td colspan="4">No Transaction Made</td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Invest / Withdraw</h4>
+
+                {% if user.subscription.subcontract.active %}
+                <p>Your current running contract has to end before you can invest again or withdraw</p>
+                {% endif %}
+
+                <ul class="nav nav-pills bg-light rounded" role="tablist">
+                    {% if user.subscription.subcontract.active == False %}
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#buy-tab" role="tab">Invest</a>
+                    </li>
+                    {% endif %}
+                    {% if user.can_withdraw %}
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#sell-tab" role="tab">Withdraw</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <div class="tab-content mt-4" style="min-height: 340px;">
+                    {% if user.subscription.subcontract.active == False %}
+                    <div class="tab-pane active" id="buy-tab" role="tabpanel">
+                        <div class="float-end ms-2">
+                            <h5 class="font-size-14"><i
+                                    class="bx bx-wallet text-primary font-size-16 align-middle me-1"></i> ${{user.wallet.total_balance|floatformat:2}}</h5>
+                        </div>
+                        <h5 class="font-size-14 mb-4">Invest Coin</h5>
+                        <label>Copy Address :</label>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Bitcoin</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Ethereum</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text">Litecoin</label>
+                            <input type="text" disabled class="form-control" placeholder="Total" value="7fyhegtd83nbuk84bmv6ysvf">
+                        </div>
+
+                        <form action="{% url 'wallet:invest' %}" method="post">
+                            {% csrf_token %}
+
+                            <!-- <div class="form-group mb-3">
+                                <label>Payment method :</label>
+                                <select class="form-select">
+                                    <option>Credit / Debit Card</option>
+                                    <option>Paypal</option>
+                                </select>
+                            </div> -->
+
+                            <div>
+                                <label>Add Amount :</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text">Amount</label>
+                                    <select class="form-select" style="max-width: 90px;" name="currency">
+                                        <option value="BITCOIN" selected>BTC</option>
+                                        <option value="ETHEREUM">ETH</option>
+                                        <option value="LITECOIN">LTC</option>
+                                    </select>
+                                    <input type="number" class="form-control" name="amount">
+                                    <label class="input-group-text">$</label>
+                                </div>
+
+                                <!-- <div class="input-group mb-3">
+                                    <label class="input-group-text">Price</label>
+                                    <input type="text" class="form-control" placeholder="Price">
+                                    <label class="input-group-text">$</label>
+                                </div> -->
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-block w-md">Invest Coin</button>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <div class="tab-pane" id="sell-tab" role="tabpanel">
+                        <div class="float-end ms-2">
+                            <h5 class="font-size-14"><i
+                                    class="bx bx-wallet text-primary font-size-16 align-middle me-1"></i> ${{user.wallet.total_balance|floatformat:2}}</h5>
+                        </div>
+                        <h5 class="font-size-14 mb-4">Withdraw Coin</h5>
+
+                        <div>
+
+                            <div class="form-group mb-3">
+                                <label>Email :</label>
+                                <input type="email" class="form-control" disabled placeholder="Email" value="{{user.email}}">
+                            </div>
+
+                            <form action="{% url 'wallet:withdraw' %}" method="post">
+                                {% csrf_token %}
+                                <label>Add Amount :</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text">Amount</label>
+
+                                    <select class="form-select" style="max-width: 90px;" name="currency">
+                                        <option value="BITCOIN" selected>BTC</option>
+                                        <option value="ETHEREUM">ETH</option>
+                                        <option value="LITECOIN">LTC</option>
+                                    </select>
+                                    <input type="text" class="form-control" name="amount">
+                                    <label class="input-group-text">$</label>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label>Wallet Address :</label>
+                                    <input type="text" class="form-control" placeholder="Wallet Address" name="address">
+                                </div>
+
+                                <!-- <div class="input-group mb-3">
+
+                                    <label class="input-group-text">Price</label>
+
+                                    <input type="text" class="form-control" placeholder="Price">
+
+                                    <label class="input-group-text">$</label>
+                                </div>
+    -->
+                                <!-- <div class="input-group mb-3">
+                                    <label class="input-group-text">Total</label>
+                                    <input type="text" class="form-control" placeholder="Total">
+                                </div> -->
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-danger btn-block w-md text-black">Withdraw Coin</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  </div>
+</div>
+<!-- end row -->
+{% endblock %}

@@ -1,0 +1,1211 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>GenieNode | You Can Never Go Wrong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Copy Trading and Market Analysis Website. Learning Purposes Only" name="description" />
+    <meta content="GinieNode" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}">
+
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="{% static 'libs/owl.carousel/dist/assets/owl.carousel.min.css'%}">
+
+    <link rel="stylesheet" href="{% static 'libs/owl.carousel/dist/assets/owl.theme.default.min.css'%}">
+
+    <!-- Bootstrap Css -->
+    <link href="{% static 'css/bootstrap.min.css'%}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{% static 'css/icons.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{% static 'css/app.min.css'%}" id="app-style" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#topnav-menu" data-bs-offset="60">
+
+    <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
+        <div class="container">
+            <a class="navbar-logo" href="{% url 'home' %}">
+                <img src="{% static 'images/logo-dark.png'%}" alt="" height="19" class="logo logo-dark">
+                <img src="{% static 'images/logo-light.png'%}" alt="" height="19" class="logo logo-light">
+            </a>
+
+            <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
+                data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav ms-auto" id="topnav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#roadmap">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faqs">FAQs</a>
+                    </li>
+
+                </ul>
+
+                <div class="my-2 ms-lg-2">
+                    {% if request.user.is_authenticated %}
+                    <a href="{{user.get_absolute_url}}" class="btn btn-outline-success w-xs">{{user.initials|upper}}</a>
+                    <a href="{% url 'account_logout' %}" class="btn btn-danger w-xs">Sign Out</a>
+                    {% else %}
+                    <a href="{% url 'account_login' %}" class="btn btn-outline-success w-xs">Sign in</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero section start -->
+    <section class="section hero-section bg-ico-hero" id="home">
+        <div class="bg-overlay bg-primary"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="text-white-50">
+                        <h1 class="text-white fw-semibold mb-3 hero-title">Want to invest in the markets without trading
+                            yourself?</h1>
+                        <p class="font-size-14">Choose GinieNodes invest, and get started with as little as
+                            <strong>$100</strong>
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-2 mt-4">
+                            <a href="{% url 'account_login' %}" class="btn btn-success">Open Investment Account</a>
+                            <a href="javascript: void(0);" class="btn btn-light">How it work</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-8 col-sm-10 ms-lg-auto">
+                    <div class="card overflow-hidden mb-0 mt-5 mt-lg-0">
+                        <div class="card-header text-center">
+                            <h5 class="mb-0">Strategy Analysis</h5>
+                        </div>
+                        <div class="card-body" style="min-height:320px">
+                            <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript"
+                                    src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+                                    async>
+                                        {
+                                            "interval": "1m",
+                                                "width": "150px",
+                                                    "isTransparent": true,
+                                                        "height": "150px",
+                                                            "symbol": "BITSTAMP:BTCUSD",
+                                                                "showIntervalTabs": true,
+                                                                    "locale": "en",
+                                                                        "colorTheme": "light"
+                                        }
+                                    </script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- hero section end -->
+
+    <!-- currency price section start -->
+    <section class="section bg-white p-0">
+        <div class="container">
+            <div class="currency-price">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:BTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:ETHUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript"
+                                src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                    {
+                                        "symbol": "BITSTAMP:LTCUSD",
+                                            "width": "100%",
+                                                "colorTheme": "light",
+                                                    "isTransparent": true,
+                                                        "locale": "en"
+                                    }
+                                </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- currency price section end -->
+
+    <!-- about section start -->
+    <section class="section pt-4 bg-white" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">About us</div>
+                        <h4>What is the Ginie Nodes?</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+
+                    <div class="text-muted">
+                        <h4>The Discovery of a Better Trading Experience</h4>
+                        <p><strong>GinieNode</strong> is a complex, multi-tiered Node rental and copy trading program based on the new blockchain economy</p>
+                        <p class="mb-4">In essence, revenue is generated through a combination of master-noding, price gains and services that work in unison to leverage each other in their respective ecosystem.</p>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <!-- <a href="javascript: void(0);" class="btn btn-success">Read More</a> -->
+                            <a href="#roadmap" class="btn btn-outline-primary">How It work</a>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-4 col-6">
+                                <div class="mt-4">
+                                    <h4>$ 22.9 M</h4>
+                                    <p>Invested Capital</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-6">
+                                <div class="mt-4">
+                                    <h4>16245</h4>
+                                    <p>Users</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ms-auto">
+                    <div class="mt-4 mt-lg-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card border">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <i class="mdi mdi-bitcoin h2 text-success"></i>
+                                        </div>
+                                        <h5>Copy Trading & Noding</h5>
+                                        <p class="text-muted mb-0">Buy, sell and own shares from the likes of Apple, Facebook, Tesla and more.</p>
+
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top text-center">
+                                        <a href="#trading" class="text-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card border mt-lg-5">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <i class="mdi mdi-wallet-outline h2 text-success"></i>
+                                        </div>
+                                        <h5>Wallet</h5>
+                                        <p class="text-muted mb-0">
+                                            Store and manage digital currencies with ease in the smart and beautiful mobile-first cryptocurrency wallets developed by Freewallet.
+                                            </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top text-center">
+                                        <a href="#wallet" class="text-primary">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <hr class="my-5">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-theme clients-carousel" id="clients-carousel" dir="ltr">
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/1.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/2.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/3.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/4.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/5.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-images">
+                                <img src="{% static 'images/clients/6.png'%}" alt="client-img"
+                                    class="mx-auto img-fluid d-block">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- about section end -->
+
+    <!-- Features start -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">Features</div>
+                        <h4>Key features of the product</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row align-items-center pt-4">
+                <div class="col-md-6 col-sm-8">
+                    <div>
+                        <img src="{% static 'images/crypto/features-img/img-1.png'%}" alt=""
+                            class="img-fluid mx-auto d-block">
+                    </div>
+                </div>
+                <div class="col-md-5 ms-auto" id="trading">
+                    <div class="mt-4 mt-md-auto">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="features-number fw-semibold display-4 me-3">01</div>
+                            <h4 class="mb-0">Master Noding</h4>
+                        </div>
+                        <p class="text-muted">In addition to the advantages of the blockchain as a technology, it is possible to achieve interesting yields by providing computing power and storage space in combination with special software.</p>
+                        <p class="text-muted">A master node, like any other full node, is a node server within a network, and full nodes are important because they process transactions and store them in the blockchain.
+                            </p>
+                           <p> However, a master node operator has rights beyond those of a normal full node operator, and is required to manage more critical tasks – bringing the operator higher rewards.</p>
+                        <div class="text-muted mt-4">
+                            <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Minimal Risk</p>
+                            <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Asset Management</p>
+                            <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Lower Loss Stakes</p>
+                            <p><i class="mdi mdi-circle-medium text-success me-1"></i>Increased Earning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row align-items-center mt-5 pt-md-5">
+                <div class="col-md-5">
+                    <div class="mt-4 mt-md-0" id="wallet">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="features-number fw-semibold display-4 me-3">02</div>
+                            <h4 class="mb-0">Wallet</h4>
+                        </div>
+                        <p class="text-muted mb-0">
+                            Store and manage digital currencies with ease in the smart and beautiful mobile-first cryptocurrency wallets developed just for your safety.
+                            </p>
+                            <p>Get your cryptocoins in your wallet without any risks and p2p negotiations. Buying cryptocurrency is easy and instant:</p>
+        <div class="text-muted mt-4">
+                            <p class="mb-2"><i class="mdi mdi-circle-medium text-success me-1"></i>Choose Currency</p>
+                            <p><i class="mdi mdi-circle-medium text-success me-1"></i>Enter sum in USD or EUR</p>
+                            <p><i class="mdi mdi-circle-medium text-success me-1"></i>Fill in a crypto currency address.</p>
+                            <p><i class="mdi mdi-circle-medium text-success me-1"></i>Get your currency balance</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  col-sm-8 ms-md-auto">
+                    <div class="mt-4 me-md-0">
+                        <img src="{% static 'images/crypto/features-img/img-2.png'%}" alt=""
+                            class="img-fluid mx-auto d-block">
+                    </div>
+                </div>
+
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- Features end -->
+
+    <!-- Roadmap start -->
+    <section class="section bg-white" id="roadmap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">Flow</div>
+                        <h4>How It Works</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div class="hori-timeline" dir="ltr">
+                        <div class="owl-carousel owl-theme events navs-carousel" id="timeline-carousel">
+                            <div class="item event-list">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 1</div>
+                                        <h5 class="mb-4">Registration</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">With no fee for registration, you can create an account with ease.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item event-list">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 2</div>
+                                        <h5 class="mb-4">Choosing a Contract</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">We have several contracts which you can choose from to start your trading. Each with their individual profit percentage and time frame.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item event-list active">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 3</div>
+                                        <h5 class="mb-4">Invest</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">With as low as <strong>$100</strong> you can start making investents in our nodes while our strategists do the trading and ensureing you earn within 15% - 25% profit on your trading contract.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item event-list">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 4</div>
+                                        <h5 class="mb-4">Withdrawals</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">You can successfully withdraw from your secure wallet once you have an equivalent minimum amount to withdraw from. Without a verified account you shall be limited to withdrawing below <strong>$1000 Monthly</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item event-list">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 5</div>
+                                        <h5 class="mb-4">Verification</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">To ensure we are dealing with you directly and the safety of our community, we urge you to verify your identity by submitting required document or passport.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item event-list">
+                                <div>
+                                    <div class="event-date">
+                                        <div class="text-primary mb-1">Step 6</div>
+                                        <h5 class="mb-4">Low Risk Management</h5>
+                                    </div>
+                                    <div class="event-down-icon">
+                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
+                                    </div>
+
+                                    <div class="mt-3 px-3">
+                                        <p class="text-muted">For every contract you make, if we loose to as low as 25% of your invested capital, we shall return to you 110% of your invested capital, guaranteed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- Roadmap end -->
+
+    <!-- Team start -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">Team</div>
+                        <h4>Meet our team</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="col-lg-12">
+                <div class="owl-carousel owl-theme events navs-carousel" id="team-carousel" dir="ltr">
+                    <div class="item">
+                        <div class="card text-center team-box">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{% static 'images/users/avatar-2.jpg'%}" alt="" class="rounded">
+                                </div>
+
+                                <div class="mt-3">
+                                    <h5>Mark Hurley</h5>
+                                    <P class="text-muted mb-0">CEO & Lead</P>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top">
+                                <div class="d-flex mb-0 team-social-links">
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Facebook">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Linkedin">
+                                            <i class="mdi mdi-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Google">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card text-center team-box">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{% static 'images/users/avatar-3.jpg'%}" alt="" class="rounded">
+                                </div>
+
+                                <div class="mt-3">
+                                    <h5>Calvin Smith</h5>
+                                    <P class="text-muted mb-0">Blockchain developer</P>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top">
+                                <div class="d-flex mb-0 team-social-links">
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Facebook">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Linkedin">
+                                            <i class="mdi mdi-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Google">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card text-center team-box">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{% static 'images/users/avatar-8.jpg'%}" alt="" class="rounded">
+                                </div>
+                                <div class="mt-3">
+                                    <h5>Vickie Sample</h5>
+                                    <P class="text-muted mb-0">Designer</P>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top">
+                                <div class="d-flex mb-0 team-social-links">
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Facebook">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Linkedin">
+                                            <i class="mdi mdi-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Google">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card text-center team-box">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{% static 'images/users/avatar-5.jpg'%}" alt="" class="rounded">
+                                </div>
+
+                                <div class="mt-3">
+                                    <h5>Alma Farley</h5>
+                                    <P class="text-muted mb-0">App developer</P>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top">
+                                <div class="d-flex mb-0 team-social-links">
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Facebook">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Linkedin">
+                                            <i class="mdi mdi-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Google">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card text-center team-box">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{% static 'images/users/avatar-1.jpg'%}" alt="" class="rounded">
+                                </div>
+
+                                <div class="mt-3">
+                                    <h5>Amy Hood </h5>
+                                    <P class="text-muted mb-0">Designer</P>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top">
+                                <div class="d-flex mb-0 team-social-links">
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Facebook">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Linkedin">
+                                            <i class="mdi mdi-linkedin"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <a href="javascript: void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Google">
+                                            <i class="mdi mdi-google"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- Team end -->
+
+    <!-- Blog start -->
+    <section class="section bg-white" id="news">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">Blog</div>
+                        <h4>Latest News</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-xl-4 col-sm-6">
+                    <div class="blog-box mb-4 mb-xl-0">
+                        <div class="position-relative">
+                            <img src="{% static 'images/crypto/blog/img-1.jpg'%}" alt=""
+                                class="rounded img-fluid mx-auto d-block">
+                            <div class="badge bg-success blog-badge font-size-11">Cryptocurrency</div>
+                        </div>
+
+                        <div class="mt-4 text-muted">
+                            <p class="mb-2"><i class="bx bx-calendar me-1"></i> 04 Mar, 2020</p>
+                            <h5 class="mb-3">Donec pede justo, fringilla vele</h5>
+                            <p>If several languages coalesce, the grammar of the resulting language</p>
+
+                            <div>
+                                <a href="javascript: void(0);">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6">
+                    <div class="blog-box mb-4 mb-xl-0">
+
+                        <div class="position-relative">
+                            <img src="{% static 'images/crypto/blog/img-2.jpg'%}" alt=""
+                                class="rounded img-fluid mx-auto d-block">
+                            <div class="badge bg-success blog-badge font-size-11">Cryptocurrency</div>
+                        </div>
+
+                        <div class="mt-4 text-muted">
+                            <p class="mb-2"><i class="bx bx-calendar me-1"></i> 12 Feb, 2020</p>
+                            <h5 class="mb-3">Aenean ut eros et nisl</h5>
+                            <p>Everyone realizes why a new common language would be desirable</p>
+
+                            <div>
+                                <a href="javascript: void(0);">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6">
+                    <div class="blog-box mb-4 mb-xl-0">
+                        <div class="position-relative">
+                            <img src="{% static 'images/crypto/blog/img-3.jpg'%}" alt=""
+                                class="rounded img-fluid mx-auto d-block">
+                            <div class="badge bg-success blog-badge font-size-11">Cryptocurrency</div>
+                        </div>
+
+                        <div class="mt-4 text-muted">
+                            <p class="mb-2"><i class="bx bx-calendar me-1"></i> 06 Jan, 2020</p>
+                            <h5 class="mb-3">In turpis, pellentesque posuere</h5>
+                            <p>To an English person, it will seem like simplified English, as a skeptical Cambridge</p>
+
+                            <div>
+                                <a href="javascript: void(0);">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- Blog end -->
+
+    <!-- Faqs start -->
+    <section class="section" id="faqs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-5">
+                        <div class="small-title">FAQs</div>
+                        <h4>Frequently asked questions</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="vertical-nav">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-4">
+                                <div class="nav flex-column nav-pills" role="tablist">
+                                    <a class="nav-link active" id="v-pills-gen-ques-tab" data-bs-toggle="pill"
+                                        href="#v-pills-gen-ques" role="tab">
+                                        <i class="bx bx-help-circle nav-icon d-block mb-2"></i>
+                                        <p class="fw-bold mb-0">General Questions</p>
+                                    </a>
+                                    <a class="nav-link" id="v-pills-token-sale-tab" data-bs-toggle="pill"
+                                        href="#v-pills-token-sale" role="tab">
+                                        <i class="bx bx-receipt nav-icon d-block mb-2"></i>
+                                        <p class="fw-bold mb-0">Investment</p>
+                                    </a>
+                                    <a class="nav-link" id="v-pills-roadmap-tab" data-bs-toggle="pill"
+                                        href="#v-pills-roadmap" role="tab">
+                                        <i class="bx bx-timer d-block nav-icon mb-2"></i>
+                                        <p class="fw-bold mb-0">Withdrawal</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-sm-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="v-pills-gen-ques"
+                                                role="tabpanel">
+                                                <h4 class="card-title mb-4">General Questions</h4>
+
+                                                <div>
+                                                    <div id="gen-ques-accordion" class="accordion custom-accordion">
+                                                        <div class="mb-3">
+                                                            <a href="#general-collapseOne" class="accordion-list"
+                                                                data-bs-toggle="collapse" aria-expanded="true"
+                                                                aria-controls="general-collapseOne">
+
+                                                                <div>What is GinieNodes ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+
+                                                            </a>
+
+                                                            <div id="general-collapseOne" class="collapse show"
+                                                                data-bs-parent="#gen-ques-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">GinieNode is a complex, multi-tiered Node rental and copy trading program based on the new blockchain economy
+                                                                        <br>
+                                                                        In essence, revenue is generated through a combination of master-noding, price gains and services that work in unison to leverage each other in their respective ecosystem.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <a href="#general-collapseTwo"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="general-collapseTwo">
+                                                                <div>Why should you invest with us ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="general-collapseTwo" class="collapse"
+                                                                data-bs-parent="#gen-ques-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">We have proven strategies we trade on to earn you profit. We embark on the risk taking and decision making leaving you with less to worry about.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <a href="#general-collapseThree"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="general-collapseThree">
+                                                                <div>How do I know this is real ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="general-collapseThree" class="collapse"
+                                                                data-bs-parent="#gen-ques-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">We have beta-tested our system for quite a while. Feel free to reach out to our beta testers (some of whom have put CONSIDERABLE sums into renting servers) and get paid regularly – on time… every time! Despite our headline rates, we are not trying to be a get-rich-quick scheme. Rather, we are a community of crypto enthusiasts looking to grow together. Become part of the family. <strong><a href="{% url 'account_signup' %}">Join Now! </a></strong>.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <a href="#general-collapseFour"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="general-collapseFour">
+                                                                <div>What makes ths different from mining ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="general-collapseFour" class="collapse"
+                                                                data-bs-parent="#gen-ques-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">Master-noding is not mining!
+                                                                        <br>
+                                                                        In recent years, mining has often been offered as an investment opportunity e.g. for Bitcoin, Ethereum or Dash.
+                                                                        <br>
+
+                                                                        This was very lucrative until 2017 when the number of new miners entering the arena ballooned. With more and more miners in competition with each other, the up-front cost of mining equipment and the enormous increases in energy consumption, mining has become quite unprofitable – especially when factoring in electricity costs, and the upcoming “halving” of Bitcoin will reduce those already-slim profits by 50%!
+                                                                        <br>
+
+                                                                        In addition, there are many scam offers from people who do not mine at all. Put simply, anyone who promises a mining yield above 2% per month is not being honest.
+                                                                        <br>
+
+                                                                        Master-noding has two huge advantages over mining, which combine to significantly minimize the risk:
+                                                                        <br>
+                                                                        <ol>
+                                                                            <li>The initial cost of mining equipment must be earned back before any real profit is made because the equipment value is close to zero by the end of a mining rig’s life. By contrast, a master node earns money from day one, and the deposited stake (which is not touched) can be released immediately and paid out if the master node is switched off. True, the value of the staked coin can rise or fall in value, but we compensate for this with clever strategies.</li>
+                                                                            <li>Since only minimum energy is needed to run a master node, losses are almost impossible (this is in total contrast to mining which is electricity-hungry) so, in practice, the only “risk” is that the expected yield might decrease.</li>
+                                                                        </ol> </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" id="v-pills-token-sale" role="tabpanel">
+                                                <h4 class="card-title mb-4">How to Invest</h4>
+
+                                                <div>
+                                                    <div id="token-accordion" class="accordion custom-accordion">
+                                                        <div class="mb-3">
+                                                            <a href="#token-collapseOne"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="token-collapseOne">
+                                                                <div>How do I deposit ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="token-collapseOne" class="collapse"
+                                                                data-bs-parent="#token-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">Since this is a crypto project, we prefer to accept deposits in Bitcoin.
+                                                                        <br>
+                                                                        However, depending on your location, we can also accept USD and EUR via bank transfer and/or card payments</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <a href="#token-collapseTwo" class="accordion-list"
+                                                                data-bs-toggle="collapse" aria-expanded="true"
+                                                                aria-controls="token-collapseTwo">
+
+                                                                <div>What the limits for Investing ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+
+                                                            </a>
+
+                                                            <div id="token-collapseTwo" class="collapse show"
+                                                                data-bs-parent="#token-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">By default, the minimum to invest with is <strong>USD 100</strong> and the maximum is currently <strong>USD 250,000</strong>, but larger amounts are possible after a complete verification. Remember: after the rental fee has been received, we use a 7-day “grace” period to purchase node stakes. This is NOT a trading scheme. There is a lot of setup time involved, so we need those 7 days to properly position your stakes in the marketplace. After 7 days you start accruing yield. </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <a href="#token-collapseThree"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="token-collapseThree">
+                                                                <div>What means do I deposit with ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="token-collapseThree" class="collapse"
+                                                                data-bs-parent="#token-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">Once you are ready to start an investment, you choose the plan you desire and can start with its lowest to max investment fee. Payments can be paid directly into the Temporary bitcoin address on the investment page. <strong>Temporary?</strong> Yes, to prevent fraudsters from using the addresses to launder through us.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" id="v-pills-roadmap" role="tabpanel">
+                                                <h4 class="card-title mb-4">How to Withdraw</h4>
+
+                                                <div>
+                                                    <div id="roadmap-accordion" class="accordion custom-accordion">
+
+                                                        <div class="mb-3">
+                                                            <a href="#roadmap-collapseOne" class="accordion-list"
+                                                                data-bs-toggle="collapse" aria-expanded="true"
+                                                                aria-controls="roadmap-collapseOne">
+
+
+
+                                                                <div>When can I withdraw ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+
+                                                            </a>
+
+                                                            <div id="roadmap-collapseOne" class="collapse show"
+                                                                data-bs-parent="#roadmap-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">You can withdraw from ou accout when your contract ends. Also be informed that you cant withdraw above your current wallet balance or withdraw your total balance at once. At most, 60% of your current balance will be available to withdrawals since we still run multithread nodes to ensure there is constant yield daily.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <a href="#roadmap-collapseTwo"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="roadmap-collapseTwo">
+                                                                <div>Can I withdraw to my Bnak Directly ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="roadmap-collapseTwo" class="collapse"
+                                                                data-bs-parent="#roadmap-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">For now No. Once you verify your account, and add your desired bit coin address, when ever there is a withdrawal request made by you, we automatically send the amount to that bitcoin address.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="mb-3">
+                                                            <a href="#roadmap-collapseThree"
+                                                                class="accordion-list collapsed"
+                                                                data-bs-toggle="collapse" aria-expanded="false"
+                                                                aria-controls="roadmap-collapseThree">
+                                                                <div>What is the maximum withdrawal amount ?</div>
+                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
+                                                            </a>
+                                                            <div id="roadmap-collapseThree" class="collapse"
+                                                                data-bs-parent="#roadmap-accordion">
+                                                                <div class="card-body">
+                                                                    <p class="mb-0">TTo ensure our node are constantly running, we made sure you can only withdraw as much as 60% of your available balance at the end of each contract term.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end vertical nav -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- Faqs end -->
+
+
+    <!-- Footer start -->
+    <footer class="landing-footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Company</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#news">News</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Resources</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                            <li><a href="{% url 'terms' %}">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Links</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            {%if user.is_authenticated %}
+                            <li><a href="{{user.get_absolute_url}}">Account</a></li>
+                            {% endif %}
+                            <li><a href="#roadmap">How it Works</a></li>
+                            <li><a href="#faqs">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Latest News</h5>
+                        <div class="blog-post">
+                            <a href="javascript: void(0);" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Cryptocurrency</div>
+                                <h5 class="post-title">Donec pede justo aliquet nec</h5>
+                                <p class="mb-0"><i class="bx bx-calendar me-1"></i> 04 Mar, 2020</p>
+                            </a>
+                            <a href="javascript: void(0);" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Cryptocurrency</div>
+                                <h5 class="post-title">In turpis, Pellentesque</h5>
+                                <p class="mb-0"><i class="bx bx-calendar me-1"></i> 12 Mar, 2020</p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <hr class="footer-border my-5">
+
+            <div class="row">
+                <div class="col-lg-12 center text-center">
+                    <div class="mb-4">
+                        <img src="{% static 'images/logo-light.png'%}" alt="" height="20">
+                    </div>
+
+                    <p class="mb-2">
+                        <script>document.write(new Date().getFullYear())</script> © GinieNodes. 
+                                        </p>
+                    <p>GinieNodes is an international online broker offering financial services in various financial instruments.
+
+                        GinieNodes brand is authorized and regulated in various jurisdictions. GinieNodes FT Limited (www.ginienodes.com) is regulated by the Cyprus Securities and Exchange Commission with CIF
+                        license number 185/12, licensed by the Financial Sector Conduct Authority (FSCA) of South Africa, with FSP No. 46614. The company is also registered with the Financial Conduct
+                        Authority of the UK with number 600475. The office is at 35, Lamprou Konstantara, GinieNodes Tower, Kato Polemidia, 4156, Limassol, Cyprus. Exinity Limited (www.ginienodes.com) is regulated by
+                        the Financial Services Commission of the Republic of Mauritius with an Investment Dealer License bearing license number C113012295 and it is situated at 5th Floor, 355 NEX Tower, Rue
+                        du Savoir, Cybercity, Ebene 72201, Mauritius . GinieNodes UK Limited is authorised and regulated by the Financial Conduct Authority, firm reference number 777911 and is situated at 30 Churchill Place, London, E14 5EU, UK.
+                        </p><p>
+                        Your capital is at risk. You should not spend more than you can afford to lose and should ensure that you fully understand the risks involved. Using the products offered may not be
+                        suitable for everyone. Before you use these products, please take into consideration your level of experience, financial objectives and seek independent advice if necessary. It is the
+                        responsibility of the Client to ascertain whether he/she is permitted to use the services of the GinieNodes brand based on the legal requirements in his/her country of residence. Please read
+                        GinieNodes’s full Risk Disclosure.</p>
+                </div>
+
+            </div>
+        </div>
+        <!-- end container -->
+    </footer>
+    <!-- Footer end -->
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'libs/jquery/dist/jquery.min.js'%}"></script>
+    <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'libs/metismenu/dist/metisMenu.min.js'%}"></script>
+    <script src="{% static 'libs/simplebar/dist/simplebar.min.js'%}"></script>
+    <script src="{% static 'libs/node-waves/dist/waves.min.js'%}"></script>
+
+    <script src="{% static 'libs/jquery.easing/jquery.easing.min.js'%}"></script>
+
+    <!-- Plugins js-->
+    <script src="{% static 'libs/jquery-countdown/dist/jquery.countdown.min.js'%}"></script>
+
+    <!-- owl.carousel js -->
+    <script src="{% static 'libs/owl.carousel/dist/owl.carousel.min.js'%}"></script>
+
+    <!-- ICO landing init -->
+    <script src="{% static 'js/pages/ico-landing.init.js'%}"></script>
+
+    <script src="{% static 'js/app.js'%}"></script>
+
+</body>
+
+</html>

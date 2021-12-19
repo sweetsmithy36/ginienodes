@@ -1,0 +1,54 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block contents %}
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="text-center mb-5">
+                                    <h4>Choose a contract</h4>
+                                    <p class="text-muted">Be informed that you can only update your contract when you have no running investment.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            {% for p in objects %}
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card plan-box">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <h5>{{p.name|title}}</h5>
+                                                <p class="text-muted">{{p.duration_weeks}} Weeks Contract</p>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <i class="bx {{p.icon}} h1 text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="py-4">
+                                            <h2><sup><small>$</small></sup> {{p.min_amount}} <span class="font-size-13 text-primary">to</span></h2> <h2><sup><small>$</small></sup> {{p.max_amount}} <span class="font-size-13">Per Contract</span></h2>
+                                        </div>
+                                        <div class="text-center plan-btn">
+                                            <a href="{% url 'users:subscribe' p.id %}" class="btn btn-primary btn-sm waves-effect waves-light">Subscribe</a>
+                                        </div>
+
+                                        <div class="plan-features mt-5">
+                                            <p><i class="bx bx-checkbox-square text-primary me-2"></i> Free Live Support</p>
+                                            <p><i class="bx bx-checkbox-square text-primary me-2"></i> Gurantee ZERO LOSS</p>
+                                            <p><i class="bx bx-checkbox-square text-primary me-2"></i> {{p.features|safe}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card plan-box">
+                                    <div class="card-body p-4">
+                                       NO PLANS
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- end row -->
+{% endblock %}

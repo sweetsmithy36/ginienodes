@@ -1,0 +1,119 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block extra_css %}
+<!-- Responsive Table css -->
+<link href="{% static 'libs/admin-resources/rwd-table/rwd-table.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block contents %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Investments</h4>
+                <p class="card-title-desc">Verify transactions by accepting or deleting a transaction.</p>
+
+                <div class="table-rep-plugin">
+                    <div class="table-responsive mb-0" data-pattern="priority-columns">
+                        <table id="tech-companies-1" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Transact Type</th>
+                                    <th data-priority="1">Date</th>
+                                    <th data-priority="3">Currency</th>
+                                    <th data-priority="3">Amount</th>
+                                    <th data-priority="3">Investor</th>
+                                    <th data-priority="3">Status</th>
+                                    <th data-priority="3">Accept</th>
+                                    <th data-priority="3">Reject</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for obj in objects %}
+                                <tr>
+                                    <th><span class="text-success}">INVESTMENT.</span></th>
+                                    <td>{{obj.created|date:"d M, Y"}}</td>
+                                    <td>{{obj.currency}}</td>
+                                    <td>${{obj.amount}}</td>
+                                    <td>{{obj.user}}</td>
+                                    <td>{% if obj.verified == True %}Verified{% else %}Unverified{% endif %}</td>
+                                    <td><a href="{% url 'wallet:invest_verify' obj.id %}">Accept Investment</a></td>
+                                    <td><a href="">Reject Transaction</a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <th colspan="7">No Transactions</th>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Withdrawals</h4>
+                <p class="card-title-desc">Verify transactions by accepting or deleting a transaction.</p>
+
+                <div class="table-rep-plugin">
+                    <div class="table-responsive mb-0" data-pattern="priority-columns">
+                        <table id="tech-companies-1" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Transact Type</th>
+                                    <th data-priority="1">Date</th>
+                                    <th data-priority="3">Currency</th>
+                                    <th data-priority="3">Amount</th>
+                                    <th data-priority="3">Investor</th>
+                                    <th data-priority="3">Status</th>
+                                    <th data-priority="3">Accept</th>
+                                    <th data-priority="3">Reject</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for obj in withdrawals %}
+                                <tr>
+                                    <th><span class="text-danger}">WITHDRAWAL.</span></th>
+                                    <td>{{obj.created|date:"d M, Y"}}</td>
+                                    <td>{{obj.currency}}</td>
+                                    <td>${{obj.amount}}</td>
+                                    <td>{{obj.user}}</td>
+                                    <td>{% if obj.verified == True %}Verified{% else %}Unverified{% endif %}</td>
+                                    <td><a href="{% url 'wallet:withdraw_verify' obj.id %}">Accept Withdrawal</a></td>
+                                    <td><a href="">Reject Transaction</a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <th colspan="7">No Transactions</th>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+{% endblock %}
+{% block extra_javascript %}
+<!-- Responsive Table js -->
+<script src="{% static 'libs/admin-resources/rwd-table/rwd-table.min.js' %}"></script>
+
+<!-- Init js -->
+<script src="{% static 'js/pages/table-responsive.init.js' %}"></script>
+
+{% endblock %}
