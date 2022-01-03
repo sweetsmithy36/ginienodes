@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import datetime
+import json
 import os
 import random
 from datetime import date, timedelta
@@ -36,6 +37,7 @@ from django.template.loader import get_template, render_to_string
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from django_celery_beat.models import CrontabSchedule, PeriodicTask
 from django_countries.fields import CountryField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -63,7 +65,7 @@ class Plans(TimeStampedModel):
     
     profit = DecimalField(max_digits=5, decimal_places=2, default=0.25)
     
-    duration_weeks = PositiveSmallIntegerField(2)
+    duration_weeks = PositiveSmallIntegerField()
     
     def __str__(self):
         return self.name

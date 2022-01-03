@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>GenieNode | You Can Never Go Wrong</title>
+    <title>GinieNode | You Can Never Go Wrong</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Copy Trading and Market Analysis Website. Learning Purposes Only" name="description" />
     <meta content="GinieNode" name="author" />
@@ -346,7 +346,7 @@
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
                         <div class="small-title">Features</div>
-                        <h4>Key features of the product</h4>
+                        <h4>Key features of the GinieNodes</h4>
                     </div>
                 </div>
             </div>
@@ -591,12 +591,12 @@
                         <div class="card text-center team-box">
                             <div class="card-body">
                                 <div>
-                                    <img src="{% static 'images/users/avatar-3.jpg'%}" alt="" class="rounded">
+                                    <img src="{% static 'images/teams/lawrence-liam.jpeg'%}" alt="" class="rounded">
                                 </div>
 
                                 <div class="mt-3">
-                                    <h5>Calvin Smith</h5>
-                                    <P class="text-muted mb-0">Blockchain developer</P>
+                                    <h5>Lawrence Liam</h5>
+                                    <P class="text-muted mb-0">CFO</P>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent border-top">
@@ -627,11 +627,11 @@
                         <div class="card text-center team-box">
                             <div class="card-body">
                                 <div>
-                                    <img src="{% static 'images/users/avatar-8.jpg'%}" alt="" class="rounded">
+                                    <img src="{% static 'images/teams/cloudia-elena.jpeg'%}" alt="" class="rounded">
                                 </div>
                                 <div class="mt-3">
-                                    <h5>Vickie Sample</h5>
-                                    <P class="text-muted mb-0">Designer</P>
+                                    <h5>Claudia Smith</h5>
+                                    <P class="text-muted mb-0">Human Resource Executive</P>
                                 </div>
                             </div>
                             <div class="card-footer bg-transparent border-top">
@@ -753,7 +753,26 @@
             <!-- end row -->
 
             <div class="row">
-                <div class="col-xl-4 col-sm-6">
+                <div class="col-12">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                        {
+                        "feedMode": "all_symbols",
+                        "colorTheme": "light",
+                        "isTransparent": true,
+                        "displayMode": "compact",
+                        "width": "100%",
+                        "height": 320,
+                        "locale": "en"
+                    }
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+                
+                <!-- <div class="col-xl-4 col-sm-6">
                     <div class="blog-box mb-4 mb-xl-0">
                         <div class="position-relative">
                             <img src="{% static 'images/crypto/blog/img-1.jpg'%}" alt=""
@@ -812,7 +831,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- end row -->
         </div>
@@ -1138,17 +1157,20 @@
                     <div class="mb-4 mb-lg-0">
                         <h5 class="mb-3 footer-list-title">Latest News</h5>
                         <div class="blog-post">
-                            <a href="javascript: void(0);" class="post">
-                                <div class="badge badge-soft-success font-size-11 mb-3">Cryptocurrency</div>
-                                <h5 class="post-title">Donec pede justo aliquet nec</h5>
-                                <p class="mb-0"><i class="bx bx-calendar me-1"></i> 04 Mar, 2020</p>
-                            </a>
-                            <a href="javascript: void(0);" class="post">
-                                <div class="badge badge-soft-success font-size-11 mb-3">Cryptocurrency</div>
-                                <h5 class="post-title">In turpis, Pellentesque</h5>
-                                <p class="mb-0"><i class="bx bx-calendar me-1"></i> 12 Mar, 2020</p>
-                            </a>
-
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                                {
+                                "feedMode": "all_symbols",
+                                "colorTheme": "dark",
+                                "isTransparent": true,
+                                "displayMode": "regular",
+                                "width": "100%",
+                                "height": 220,
+                                "locale": "en"
+                            }
+                                </script>
+                            </div>    
                         </div>
                     </div>
                 </div>

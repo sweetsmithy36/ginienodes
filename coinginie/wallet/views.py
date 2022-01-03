@@ -85,7 +85,8 @@ class InvestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         assert (
             self.request.user.is_authenticated
         )  # for mypy to know that the user is authenticated
-        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
+        return HttpResponseRedirect('/complete-investment/')
+        # return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
     
     def form_valid(self, form):
         form = form.save(commit=False)

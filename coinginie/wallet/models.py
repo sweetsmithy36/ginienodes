@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import datetime
+import json
 import os
 import random
 from datetime import date, timedelta
@@ -36,8 +37,10 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import get_template, render_to_string
 from django.urls import reverse
 from django.urls.base import reverse_lazy
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from django_celery_beat.models import CrontabSchedule, PeriodicTask
 from django_countries.fields import CountryField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -132,6 +135,7 @@ class Wallet(TimeStampedModel):
     total_investment = DecimalField(max_digits=20, decimal_places=2, default=0.00)
     # total_withdrawals = DecimalField(max_digits=20, decimal_places=2, default=0.00)
 
+    
     @property
     def total_balance(self):
         bal = self.bitcoin_balance + self.litecoin_balance + self.ethereum_balance
@@ -206,6 +210,24 @@ class Deposit(TimeStampedModel):
 
     verified = BooleanField(default=False)
 
+    roitask = OneToOneField(PeriodicTask, on_delete=CASCADE, null=True, related_name="deposittask")
+    
+    def dailyROI(self):
+        now = self.created
+        end = now + datetime.timedelta(weeks=self.user.subscription.contract.duration_weeks)
+        
+        schedule = CrontabSchedule.objects.get_or_create(
+            minute="30", hour="0", day_of_week="0", day_of_month="0", month_of_year="0",
+        )
+        self.roitask = PeriodicTask.objects.create(
+            name = f"{self.user.username} daily ROI for {self.user.subscription.contract.name} from {now} - {end}",
+            task = "daily_roi",
+            crontab = schedule,
+            args=json.dumps([self.id]),
+            start_time= now,
+        )
+        self.save()
+
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} Deposit"
 
@@ -234,10 +256,12 @@ class Transactions(TimeStampedModel):
         (LITECOIN,"Litecoin"),
     )
     INVEST = "Invest"
+    ROI = "ROI"
     WITHDRAW = "Withdraw"
     TYPE = (
         (INVEST, "Invest"),
-        (WITHDRAW, "Withdraw")
+        (WITHDRAW, "Withdraw"),
+        (ROI, 'ROI'),
     )
     user = ForeignKey("users.User", on_delete=CASCADE, related_name="transaction")
     exh_rate = ForeignKey(ExchangeRate, on_delete=CASCADE, related_name="tranrate", default=1)

@@ -27,6 +27,7 @@ sitemaps = {
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("complete-investment/", TemplateView.as_view(template_name="pages/complete.html"), name="comp-inv"),
     path("dashboard/", DashboardView.as_view(),name='dashboard'),
     path("dashboard/MT5/", DashboardTradeView.as_view(),name='dashboard-trade'),
 
