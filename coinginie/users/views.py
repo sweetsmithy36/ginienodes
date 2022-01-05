@@ -92,7 +92,7 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     
     def form_valid(self, form):
         form.save()
-        User.object.filter(username=self.request.user.username).update(profile_updated=True)   
+        User.objects.filter(username=self.request.user.username).update(profile_updated=True)   
         return super().form_valid(form)
        
     def get_context_data(self, **kwargs):
